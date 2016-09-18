@@ -22,7 +22,7 @@ public class BookComparatorTest {
     }
 
     @Test
-    public void when_compare_book_named_abook_and_book_named_bbook_then_return_negative_one() throws Exception {
+    public void when_compare_book_named_abook_and_bbook_then_return_negative_one() throws Exception {
         Book aBook = new Book("abook", "author", "1986");
         Book bBook = new Book("bBook", "author", "1986");
         int compareResult = comparator.compare(aBook, bBook);
@@ -30,7 +30,7 @@ public class BookComparatorTest {
     }
 
     @Test
-    public void when_compare_book_named_bbook_and_book_abook_then_return_one() throws Exception {
+    public void when_compare_book_named_bbook_and_abook_then_return_one() throws Exception {
         Book bBook = new Book("bbook", "author", "1986");
         Book aBook = new Book("aBook", "author", "1986");
         int compareResult = comparator.compare(bBook, aBook);
