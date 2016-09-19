@@ -1,5 +1,6 @@
 package com.twu.biblioteca.data;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -13,7 +14,12 @@ public class BookList {
         this.bookList = bookList;
     }
 
-    public List<Book> getAllBook() {
+    public List<Book> getAllBooks() {
         return bookList;
+    }
+
+    public Book update(Book oldBook, Book newBook) {
+        Collections.replaceAll(bookList, oldBook, newBook);
+        return newBook;
     }
 }

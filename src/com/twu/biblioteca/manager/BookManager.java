@@ -1,10 +1,8 @@
 package com.twu.biblioteca.manager;
 
 import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
 import com.twu.biblioteca.data.Book;
 import com.twu.biblioteca.data.BookList;
-import source.Environment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,23 +32,48 @@ public class BookManager {
     public List<String> getBookStrList() {
         List<String> bookStrList = new ArrayList<String>();
 
-        if (bookList.getAllBook() == null || bookList.getAllBook().size() == 0) {
-            bookStrList.add(getEmptyPrompt());
+        if (bookList.getAllBooks() == null || bookList.getAllBooks().size() == 0) {
             return bookStrList;
         }
 
-        for (Book book : bookList.getAllBook()) {
+        for (Book book : bookList.getAllBooks()) {
             bookStrList.add(generateBookDescription(book));
+        }
+        return bookStrList;
+    }
+
+    public List<String> getBorrowedBookStrList() {
+        List<String> bookStrList = new ArrayList<String>();
+
+        if (bookList.getAllBooks() == null || bookList.getAllBooks().size() == 0) {
+            return bookStrList;
+        }
+
+        for (Book book : bookList.getAllBooks()) {
+            if (book.isBorrowed()) {
+                bookStrList.add(generateBookDescription(book));
+            }
+        }
+        return bookStrList;
+    }
+
+    public List<String> getUnborrowedBookStrList() {
+        List<String> bookStrList = new ArrayList<String>();
+
+        if (bookList.getAllBooks() == null || bookList.getAllBooks().size() == 0) {
+            return bookStrList;
+        }
+
+        for (Book book : bookList.getAllBooks()) {
+            if (!book.isBorrowed()) {
+                bookStrList.add(generateBookDescription(book));
+            }
         }
         return bookStrList;
     }
 
     public String getEmptyPrompt() {
         return BOOK_EMPTY_PROMPT;
-    }
-
-    public Book getBookByTag(int position) {
-        return bookList.getAllBook().get(position);
     }
 
     private String generateBookDescription(Book book) {
@@ -60,5 +83,23 @@ public class BookManager {
         sb.append(", published year: " + book.getPublishYear());
         sb.append(", is borrowed: " + book.isBorrowed());
         return sb.toString();
+    }
+
+    public void update(Book book) {
+        Book oldBook = getBookByName(book.getName());
+        bookList.update(oldBook, book);
+    }
+
+    public Book getBookByPosition(int position) {
+        return bookList.getAllBooks().get(position);
+    }
+
+    public Book getBookByName(String name) {
+        for (Book book: bookList.getAllBooks()) {
+            if (name.equals(book.getName())) {
+                return book;
+            }
+        }
+        return null;
     }
 }

@@ -3,10 +3,7 @@ package com.twu.biblioteca.comparator;
 import com.twu.biblioteca.data.Book;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Collections;
 import java.util.Comparator;
-
 import static org.junit.Assert.*;
 
 /**
