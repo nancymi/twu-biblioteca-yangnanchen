@@ -8,11 +8,13 @@ public class Book {
     private final String name;
     private final String author;
     private final String publishYear;
+    private boolean borrowed;
 
     public Book(String name, String author, String publishYear) {
         this.name = name;
         this.author = author;
         this.publishYear = publishYear;
+        this.borrowed = false;
     }
 
     public String getName() {
@@ -25,5 +27,13 @@ public class Book {
 
     public String getPublishYear() {
         return publishYear;
+    }
+
+    public void setBorrowed(boolean borrowed) {
+        this.borrowed = borrowed;
+    }
+
+    public boolean isBorrowed() {
+        return borrowed;
     }
 }
