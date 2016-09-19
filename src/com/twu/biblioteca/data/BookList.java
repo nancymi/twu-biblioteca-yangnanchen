@@ -16,5 +16,4 @@ public class BookList {
     public List<Book> getAllBook() {
         return bookList;
     }
-
 }
