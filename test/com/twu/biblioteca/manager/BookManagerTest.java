@@ -48,7 +48,7 @@ public class BookManagerTest {
     public void when_call_show_books_and_books_empty_then_return_empty_prompt() throws Exception {
         List<Book> books = new ArrayList<Book>();
         BookList bookList = mock(BookList.class);
-        when(bookList.getAllBook()).thenReturn(books);
+        when(bookList.getAllBooks()).thenReturn(books);
 
         BookManager bookManager = BookManager.getInstance(bookList);
         List<String> emptyBooksStrList = bookManager.getBookStrList();
@@ -60,7 +60,7 @@ public class BookManagerTest {
     @Test
     public void when_call_show_books_and_books_null_then_return_empty_prompt() throws Exception {
         BookList bookList = mock(BookList.class);
-        when(bookList.getAllBook()).thenReturn(null);
+        when(bookList.getAllBooks()).thenReturn(null);
 
         BookManager bookManager = BookManager.getInstance(bookList);
         List<String> emptyBooksStrList = bookManager.getBookStrList();
